@@ -8,16 +8,67 @@ namespace Classes
 {
     public class Cart
     {
-        private List<Animal> AnimalCollection;
+        public List<Animal> AnimalCollection { get; private set; }
 
-        private Animal LargestCarnivore;
+        public Animal LargestCarnivore { get; private set; }
 
-        private int AnimalCount;
+        public int AnimalCount { get; private set; }
 
-        Cart() 
+        public Cart() 
         {
             AnimalCount = 0;
+            LargestCarnivore = null;
             AnimalCollection = new List<Animal>();
+        }
+
+        public bool TryAddAnimal(Animal animal)
+        {
+            try
+            {
+                AnimalCollection.Add(animal);
+
+                if(animal.Type == AnimalType.Carnivore)
+                {
+                    LargestCarnivore = animal;
+                }
+
+                AnimalCount += (int)animal.Size;
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+
+        public bool DoesAnimalFit(Animal animal)
+        {
+            if ((AnimalCount + (int)animal.Size) <= 10)
+            {
+                if (LargestCarnivore == null)
+                {
+                    return true;
+                }
+                else if (LargestCarnivore != null && (int)animal.Size > (int)LargestCarnivore.Size)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public override string ToString()
+        {
+            if(LargestCarnivore == null)
+            {
+                return "Cart Info, animal amount: " + AnimalCollection.Count + ", Current point count: " + AnimalCount;
+            }
+            else
+            {
+                return "Cart Info, animal amount: " + AnimalCollection.Count + ", Current point count: " + AnimalCount + ", Largest Carnivore: " + LargestCarnivore.Size;
+            }
         }
     }
 }

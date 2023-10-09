@@ -2,16 +2,19 @@
 {
     public class Animal
     {
-        private AnimalSize Size;
+        public AnimalSize Size { get; private set; }
 
-        private AnimalType Type;
+        public AnimalType Type { get; private set; }
 
-        Animal(AnimalSize size, AnimalType type)
+        public Animal(AnimalSize size, AnimalType type)
         {
             Size = size;
             Type = type;
         }
 
-
+        public override string ToString()
+        {
+            return "Animal Info, Size: " + Size + ", Type: " + Type;
+        }
     }
 }
