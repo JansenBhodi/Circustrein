@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,14 +9,12 @@ namespace Classes
 {
     public class Train
     {
-        public List<Cart> _cartList { get; private set; }
-        public List<Animal> _allAnimals { get; private set; }
+        private List<Cart> _cartList;
+        private List<Animal> _allAnimals;
 
         public Train()
         {
             _cartList = new List<Cart>();
-            Cart cart = new Cart();
-            _cartList.Add(cart);
             _allAnimals = new List<Animal>();
         }
 
@@ -26,8 +25,12 @@ namespace Classes
             return train;
         }
 
+        public IReadOnlyList<Cart> GetCartList() 
+        {
+            return _cartList.AsReadOnly();
+        }
 
-        public void SortAnimals()
+        public Train SortAnimals(List<Animal> Animals)
         {
             #region V1
             ////Using Linq to sort animal list (requires another list to sort it into.
@@ -103,38 +106,82 @@ namespace Classes
             #region V2
             //Using Linq to sort animal list (requires another list to sort it into.
             //sorting order. Carnivore first, then ordered on size.
-            List<Animal> AnimalList = _allAnimals.OrderByDescending(o => o.Type).ThenByDescending(o => o.Size).ToList();
+            //List<Animal> AnimalList = _allAnimals.OrderByDescending(animal => animal.Type).ThenByDescending(animal => animal.Size).ToList();
 
-            foreach(Animal animal in AnimalList)
+            //foreach(Animal animal in AnimalList)
+            //{
+            //    if (animal.Type == AnimalType.Carnivore)
+            //    {
+            //        Cart newCart = new Cart();
+            //        newCart.AddAnimal(animal);
+            //        _cartList.Add(newCart);
+            //    }
+            //    else
+            //    {
+            //        bool NewCartRequired = true;
+            //        foreach (Cart cart in _cartList)
+            //        {
+            //            try
+            //            {
+            //                cart.AddAnimal(animal);
+            //                NewCartRequired = false;
+            //                break;
+            //            }
+            //            catch (Exception)
+            //            {
+
+            //            }
+            //        }
+            //        if (NewCartRequired)
+            //        {
+            //            Cart newCart = new Cart();
+            //            newCart.AddAnimal(animal);
+            //            _cartList.Add(newCart);
+            //        }
+            //    }
+            //}
+            #endregion
+            #region V3
+            Train train = new Train();
+
+            //Using Linq to sort animal list (requires another list to sort it into.
+            //sorting order. Carnivore first, then ordered on size.
+            train._allAnimals = Animals.OrderByDescending(animal => animal.Type).ThenByDescending(animal => animal.Size).ToList();
+
+            foreach (Animal animal in train._allAnimals)
             {
-                if(animal.Type == AnimalType.Carnivore)
+                if (animal.Type == AnimalType.Carnivore)
                 {
                     Cart newCart = new Cart();
-                    newCart.TryAddAnimal(animal);
-                    _cartList.Add(newCart);
+                    newCart.AddAnimal(animal);
+                    train._cartList.Add(newCart);
                 }
                 else
                 {
                     bool NewCartRequired = true;
-                    foreach (Cart cart in _cartList)
+                    foreach (Cart cart in train._cartList)
                     {
-                        if (cart.DoesAnimalFit(animal))
+                        try
                         {
+                            cart.AddAnimal(animal);
                             NewCartRequired = false;
-                            cart.TryAddAnimal(animal);
                             break;
                         }
+                        catch (Exception)
+                        {
+
+                        }
                     }
-                    if (NewCartRequired == true)
+                    if (NewCartRequired)
                     {
                         Cart newCart = new Cart();
-                        newCart.TryAddAnimal(animal);
-                        _cartList.Add(newCart);
+                        newCart.AddAnimal(animal);
+                        train._cartList.Add(newCart);
                     }
                 }
             }
+            return train;
             #endregion
-
         }
 
         public void AddAnimal(Animal animal)

@@ -21,26 +21,21 @@ namespace Classes
             AnimalCollection = new List<Animal>();
         }
 
-        public bool TryAddAnimal(Animal animal)
+        public void AddAnimal(Animal animal)
         {
-            try
+            if (!DoesAnimalFit(animal))
             {
-                AnimalCollection.Add(animal);
-
-                if(animal.Type == AnimalType.Carnivore)
-                {
-                    LargestCarnivore = animal;
-                }
-
-                AnimalCount += (int)animal.Size;
-
-                return true;
+                throw new Exception("Animal does not fit inside Cart.");
             }
-            catch (Exception)
+
+            AnimalCollection.Add(animal);
+
+            if (animal.Type == AnimalType.Carnivore)
             {
-                return false;
-                throw;
+                LargestCarnivore = animal;
             }
+
+            AnimalCount += (int)animal.Size;
         }
 
         public bool DoesAnimalFit(Animal animal)

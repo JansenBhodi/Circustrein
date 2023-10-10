@@ -26,8 +26,8 @@ namespace CircustreinTests
             Animal LargeHerbi = new Animal(AnimalSize.Large, AnimalType.Herbivore);
 
             Cart cart = new Cart();
-            cart.TryAddAnimal(Mediumherbi);
-            cart.TryAddAnimal(LargeHerbi);
+            cart.AddAnimal(Mediumherbi);
+            cart.AddAnimal(LargeHerbi);
             Assert.IsTrue(cart.DoesAnimalFit(animal));
         }
         [TestMethod]
@@ -37,7 +37,7 @@ namespace CircustreinTests
             Animal LargeCarni = new Animal(AnimalSize.Large, AnimalType.Carnivore);
 
             Cart cart = new Cart();
-            cart.TryAddAnimal(LargeCarni);
+            cart.AddAnimal(LargeCarni);
             Assert.IsFalse(cart.DoesAnimalFit(animal));
         }
         [TestMethod]
@@ -47,7 +47,7 @@ namespace CircustreinTests
             Animal smallCarni = new Animal(AnimalSize.Small, AnimalType.Carnivore);
 
             Cart cart = new Cart();
-            cart.TryAddAnimal(smallCarni);
+            cart.AddAnimal(smallCarni);
             Assert.IsTrue(cart.DoesAnimalFit(animal));
         }
         [TestMethod]
@@ -57,7 +57,7 @@ namespace CircustreinTests
             Animal LargeCarni = new Animal(AnimalSize.Large, AnimalType.Carnivore);
 
             Cart cart = new Cart();
-            cart.TryAddAnimal(LargeCarni);
+            cart.AddAnimal(LargeCarni);
             Assert.IsFalse(cart.DoesAnimalFit(animal));
         }
         [TestMethod]
@@ -67,17 +67,9 @@ namespace CircustreinTests
             Animal LargeHerbi = new Animal(AnimalSize.Large, AnimalType.Herbivore);
 
             Cart cart = new Cart();
-            cart.TryAddAnimal(LargeHerbi);
-            cart.TryAddAnimal(LargeHerbi);
+            cart.AddAnimal(LargeHerbi);
+            cart.AddAnimal(LargeHerbi);
             Assert.IsFalse(cart.DoesAnimalFit(animal));
-        }
-        [TestMethod]
-        public void PutAnimalIntoCorrectCartTest()
-        {
-            Animal animal = new Animal(AnimalSize.Small, AnimalType.Carnivore);
-
-            Cart cart = new Cart();
-            Assert.IsTrue(cart.TryAddAnimal(animal));
         }
     }
 }

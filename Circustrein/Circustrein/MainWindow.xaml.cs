@@ -21,7 +21,7 @@ namespace Circustrein
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Train train = new Train();
+        List<Animal> Animals = new List<Animal>();
         Animal largeCarnivore = new Animal(AnimalSize.Large, AnimalType.Carnivore);
         Animal MediumCarnivore = new Animal(AnimalSize.Medium, AnimalType.Carnivore);
         Animal SmallCarnivore = new Animal(AnimalSize.Small, AnimalType.Carnivore);
@@ -36,86 +36,86 @@ namespace Circustrein
 
         private void BtnPreset1(object sender, RoutedEventArgs e)
         {
-            train.Reset();
+            Animals.Clear();
             LbView.ItemsSource = null;
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(SmallCarnivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumCarnivore);
-            train.SortAnimals();
-            LbView.ItemsSource = train._cartList;
+            Animals.Add(largeCarnivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(SmallCarnivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumCarnivore);
+            Train train = new Train().SortAnimals(Animals);
+            LbView.ItemsSource = train.GetCartList();
         }
         private void BtnPreset2(object sender, RoutedEventArgs e)
         {
-            train.Reset();
+            Animals.Clear();
             LbView.ItemsSource = null;
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(SmallCarnivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumCarnivore);
-            train.SortAnimals();
-            LbView.ItemsSource = train._cartList;
+            Animals.Add(largeCarnivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(SmallCarnivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumCarnivore);
+            Train train = new Train().SortAnimals(Animals);
+            LbView.ItemsSource = train.GetCartList();
 
         }
         private void BtnPreset3(object sender, RoutedEventArgs e)
         {
-            train.Reset();
+            Animals.Clear();
             LbView.ItemsSource = null;
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(SmallCarnivore);
-            train.AddAnimal(SmallCarnivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumCarnivore);
-            train.SortAnimals();
-            LbView.ItemsSource = train._cartList;
+            Animals.Add(largeCarnivore);
+            Animals.Add(largeCarnivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(SmallCarnivore);
+            Animals.Add(SmallCarnivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumCarnivore);
+            Train train = new Train().SortAnimals(Animals);
+            LbView.ItemsSource = train.GetCartList();
 
         }
         private void BtnPreset4(object sender, RoutedEventArgs e)
         {
-            train.Reset();
+            Animals.Clear();
             LbView.ItemsSource = null;
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(SmallHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(LargeHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.AddAnimal(MediumHerbivore);
-            train.SortAnimals();
-            LbView.ItemsSource = train._cartList;
+            Animals.Add(SmallHerbivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(SmallHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(LargeHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Animals.Add(MediumHerbivore);
+            Train train = new Train().SortAnimals(Animals);
+            LbView.ItemsSource = train.GetCartList();
 
         }
         private void BtnPreset5(object sender, RoutedEventArgs e)
         {
-            train.Reset();
+            Animals.Clear();
             LbView.ItemsSource = null;
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(largeCarnivore);
-            train.AddAnimal(SmallCarnivore);
-            train.AddAnimal(SmallCarnivore);
-            train.AddAnimal(MediumCarnivore);
-            train.SortAnimals();
-            LbView.ItemsSource = train._cartList;
+            Animals.Add(largeCarnivore);
+            Animals.Add(largeCarnivore);
+            Animals.Add(largeCarnivore);
+            Animals.Add(SmallCarnivore);
+            Animals.Add(SmallCarnivore);
+            Animals.Add(MediumCarnivore);
+            Train train = new Train().SortAnimals(Animals);
+            LbView.ItemsSource = train.GetCartList();
 
         }
     }
