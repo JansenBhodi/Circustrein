@@ -142,24 +142,23 @@ namespace Classes
             //}
             #endregion
             #region V3
-            Train train = new Train();
 
             //Using Linq to sort animal list (requires another list to sort it into.
             //sorting order. Carnivore first, then ordered on size.
-            train._allAnimals = Animals.OrderByDescending(animal => animal.Type).ThenByDescending(animal => animal.Size).ToList();
+            _allAnimals = Animals.OrderByDescending(animal => animal.Type).ThenByDescending(animal => animal.Size).ToList();
 
-            foreach (Animal animal in train._allAnimals)
+            foreach (Animal animal in _allAnimals)
             {
                 if (animal.Type == AnimalType.Carnivore)
                 {
                     Cart newCart = new Cart();
                     newCart.AddAnimal(animal);
-                    train._cartList.Add(newCart);
+                    _cartList.Add(newCart);
                 }
                 else
                 {
                     bool NewCartRequired = true;
-                    foreach (Cart cart in train._cartList)
+                    foreach (Cart cart in _cartList)
                     {
                         try
                         {
@@ -176,11 +175,11 @@ namespace Classes
                     {
                         Cart newCart = new Cart();
                         newCart.AddAnimal(animal);
-                        train._cartList.Add(newCart);
+                        _cartList.Add(newCart);
                     }
                 }
             }
-            return train;
+            return this;
             #endregion
         }
 
